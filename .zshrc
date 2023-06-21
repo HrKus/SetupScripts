@@ -25,7 +25,7 @@ eval "$(pyenv init -)"
 # pyenv shell function for conda
 function pyenv_global() {
     # >>> conda deactivate >>>
-    if [[ "$(pyenv version-name)" =~ "conda" ]]; then
+    if [[ "$(pyenv version-name)" =~ "conda"  || "$(pyenv version-name)" =~ "mamba" ]]; then
         conda deactivate 1>/dev/null 2>&1
         unset -f conda 1>/dev/null 2>&1
     fi
@@ -40,7 +40,7 @@ function pyenv_global() {
     pyenv global $1
 
     # >>> conda initialize >>>
-    if [[ "$(pyenv version-name)" =~ "conda" ]]; then
+    if [[  "$(pyenv version-name)" =~ "conda"  || "$(pyenv version-name)" =~ "mamba"  ]]; then
         # !! Contents within this block are managed by 'conda init' !!
         __conda_setup="$('$(pyenv prefix)/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
         if [ $? -eq 0 ]; then
@@ -64,7 +64,7 @@ function pyenv_global() {
 
 function pyenv_local() {
     # >>> conda deactivate >>>
-    if [[ "$(pyenv version-name)" =~ "conda" ]]; then
+    if [[  "$(pyenv version-name)" =~ "conda"  || "$(pyenv version-name)" =~ "mamba"  ]]; then
         conda deactivate 1>/dev/null 2>&1
         unset -f conda 1>/dev/null 2>&1
     fi
@@ -79,7 +79,7 @@ function pyenv_local() {
     pyenv local $1
 
     # >>> conda initialize >>>
-    if [[ "$(pyenv version-name)" =~ "conda" ]]; then
+    if [[  "$(pyenv version-name)" =~ "conda"  || "$(pyenv version-name)" =~ "mamba"  ]]; then
         # !! Contents within this block are managed by 'conda init' !!
         __conda_setup="$('$(pyenv prefix)/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
         if [ $? -eq 0 ]; then
